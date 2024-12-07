@@ -1,0 +1,79 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.foto {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.foto:hover {
+    transform: scale(1.05);
+}
+
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+}
+
+.fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 70%;
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.overlay-text {
+    margin-top: 10px;
+}
+
+.fullscreen-overlay .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.fullscreen-overlay .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+    user-select: none;
+}
+
+.nav-btn.left {
+    left: 20px;
+}
+
+.nav-btn.right {
+    right: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
