@@ -68,6 +68,20 @@
     right: 20px;
 }
 
+@media (max-width: 575px) {
+    .col-xs-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-sm-4 {
+        flex: 0 0 auto;
+        width: 33.333333%;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

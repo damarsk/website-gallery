@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-center align-items-center" style="height: 90vh;">
-    <div class="w-50">
+<div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
+    <div class="col-12 col-lg-6">
         <h2 class="text-center">Tambah Album</h2>
         <form action="{{ route('album') }}" method="POST" enctype="multipart/form-data">
             @csrf

@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     @foreach ($images->chunk(ceil($images->count() / 3)) as $columnImages)
-                    <div class="col-lg-4 col-md-6 col-sm-6 mb-4 mb-lg-0">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-4 mb-lg-0">
                         @foreach ($columnImages as $image)
                         <img
                             src="{{ asset('storage/' . $image->url) }}"
