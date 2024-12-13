@@ -27,6 +27,9 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('album') }}">Album</a>
                     <a class="nav-link" href="#">Blog</a>
                     <a class="nav-link" href="#">About</a>
+                    @if(auth()->check() && auth()->user()->level == 'admin')
+                    <a class="nav-link" href="{{ route('admin.index') }}">Admin Dashboard</a>
+                    @endif
                 </div>
                 <hr class="mb-4">
                 @auth
