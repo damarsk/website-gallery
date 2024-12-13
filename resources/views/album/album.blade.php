@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ asset('css/vegas.min.css') }}">
     <div class="container">
         <main>
+            <!-- Section Header -->
             <section class="py-5 text-center container position-relative">
+                <!-- Vegas Container -->
                 <div class="vegas-container rounded" style="height: 500px;">
                     <div class="overlay"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1;">
@@ -19,6 +21,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Gallery -->
             <div class="album py-4">
                 <div class="container">
@@ -30,8 +33,8 @@
                                         class="foto img-fluid shadow-1-strong rounded mb-4"
                                         alt="{{ $image->description ?? 'Album Image' }}"
                                         data-title="{{ $image->title ?? 'Untitled' }}"
-                                        data-description="{{ $image->description ?? 'No description available.' }}"
-                                        data-date="{{ $image->photo_date ?? 'Unknown date' }}">
+                                        data-description="{{ $image->description ?? 'Deskripsi tidak tersedia.' }}"
+                                        data-date="{{ $image->photo_date ?? 'Tanggal tidak diketahui.' }}">
                                 @endforeach
                             </div>
                         @endforeach
@@ -54,19 +57,22 @@
         </div>
     </footer>
 @endsection
+
 @section('script')
     <script src="{{ asset('js/vegas.min.js') }}"></script>
     <script src="{{ asset('js/album.js') }}"></script>
     <script>
         $(function() {
+            const slides = [
+                @foreach ($images as $image)
+                    {
+                        src: '{{ asset('storage/' . $image->url) }}'
+                    },
+                @endforeach
+            ];
+
             $('.vegas-container').vegas({
-                slides: [
-                    @foreach ($images as $image)
-                        {
-                            src: '{{ asset('storage/' . $image->url) }}'
-                        },
-                    @endforeach
-                ]
+                slides: slides
             });
         });
     </script>

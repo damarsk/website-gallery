@@ -18,17 +18,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route untuk user yang belum login
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/signin', [AuthController::class, 'signin'])->name('login');
+    Route::get('/signup', [AuthController::class, 'signup'])->name('register');
+    Route::post('/signin_process', [AuthController::class, 'signin_process'])->name('signin_process');
+    Route::post('/signup_process', [AuthController::class, 'signup_process'])->name('signup_process');
 });
-Route::get('/signin', [AuthController::class, 'signin'])->name('login');
-Route::get('/signup', [AuthController::class, 'signup'])->name('register');
-Route::post('/signin_process', [AuthController::class, 'signin_process'])->name('signin_process');
-Route::post('/signup_process', [AuthController::class, 'signup_process'])->name('signup_process');
 
+// Route untuk user yang sudah login
 Route::middleware(['checklogin'])->group(function () {
     Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
     Route::get('/tambah', [AlbumController::class, 'tambahAlbum'])->name('tambah.album');
     Route::post('/album', [AlbumController::class, 'store'])->name('album');
     Route::post('/signout', [AuthController::class, 'signout'])->name('signout');
+    
+    // Route untuk admin
+    Route::middleware(['admin'])->prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/users', [AdminController::class, 'listUsers'])->name('admin.users');
+        Route::post('/users/{user}/update', [AdminController::class, 'updateUser'])->name('admin.users.update');
+        Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    });
 });
