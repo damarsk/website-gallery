@@ -42,12 +42,11 @@ Route::middleware(['checklogin'])->group(function () {
         Route::get('/users', [AdminController::class, 'listUsers'])->name('admin.users.index');
         Route::get('/photos', [AdminController::class, 'listPhotos'])->name('admin.photos.index');
         // Manage User
-        Route::get('/users/{id}/show', [AdminController::class, 'showUser'])->name('admin.users.show');
+        Route::get('/users/{id}', [AdminController::class, 'showUser'])->name('admin.users.show');
         Route::get('/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
-        Route::post('/users/{id}/update', [AdminController::class, 'updateUser'])->name('admin.users.update');
+        Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
         Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
         // Manage Photo
         Route::get('/photos/{id}/show', [AdminController::class, 'showPhoto'])->name('admin.photos.show');
-        
     });
 });

@@ -17,25 +17,34 @@
 <body>
     <div class="d-flex flex-column flex-lg-row">
         <!-- Sidebar (Offcanvas untuk layar kecil dan Sidebar untuk layar besar) -->
-        <div class="sidebar bg-dark text-white vh-100 p-3 d-none d-lg-flex flex-column">
-            <h4 class="mb-4">Admin Panel</h4>
-            <ul class="nav flex-column flex-grow-1">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{{ route('admin.index') }}">
-                <i class="bi bi-house-door-fill"></i> Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{{ route('admin.users.index') }}">
-                <i class="bi bi-people-fill"></i> Manage Users
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{{ route('admin.photos.index') }}">
-                <i class="bi bi-images"></i> Manage Photos
-                </a>
-            </li>
-            </ul>
+        <div class="sidebar bg-dark text-white vh-100 d-none d-lg-flex flex-column sticky-top">
+            <div class="p-3 flex-grow-1">
+                <h4 class="mb-4 text-center">Album Glorious</h4>
+                <hr>
+                <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.index') }}">
+                    <i class="bi bi-house-door-fill"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.users.index') }}">
+                    <i class="bi bi-people-fill"></i> Manage Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('admin.photos.index') }}">
+                    <i class="bi bi-images"></i> Manage Photos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" href="{{ route('album.index') }}">
+                    <i class="bi bi-box-arrow-left"></i> Back to Album
+                    </a>
+
+                </li>
+                </ul>
+            </div>
             <form method="POST" action="{{ route('signout') }}">
             @csrf
             <button type="submit" class="btn btn-danger w-100">
@@ -48,7 +57,7 @@
         <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasSidebar"
             aria-labelledby="offcanvasSidebarLabel" style="width: 250px;">
             <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Admin Panel</h5>
+            <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Album Glorious</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body p-0 d-flex flex-column">
@@ -102,9 +111,10 @@
             </footer>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    @yield('scripts')
 </body>
 
 </html>

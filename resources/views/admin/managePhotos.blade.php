@@ -2,7 +2,7 @@
 @section('title', 'Manage Photos')
 @section('content')
 
-<div class="container mt-5">
+<div class="container">
     <h2>Daftar Foto</h2>
     <table class="table table-bordered">
         <thead>
