@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glorious 24</title>
+    <title>@yield('title')</title>
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -24,9 +24,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
-                    <a class="nav-link active" aria-current="page" href="{{ route('album') }}">Album</a>
-                    <a class="nav-link" href="#">Blog</a>
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link {{ request()->routeIs('album.index') ? 'active' : '' }}" aria-current="page" href="{{ route('album') }}">Album</a>
+                    <a class="nav-link {{ request()->routeIs('album.about') ? 'active' : '' }}" href="{{ route('album.about') }}">About</a>
                     @if(auth()->check() && auth()->user()->level == 'admin')
                     <a class="nav-link" href="{{ route('admin.index') }}">Admin Dashboard</a>
                     @endif

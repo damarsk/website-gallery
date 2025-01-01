@@ -19,6 +19,10 @@ class AlbumController extends Controller
         return view('album.tambah');
     }
 
+    public function about() {
+        return view('album.about');
+    }
+
     public function store(Request $request)
     {
         // Validasi input
