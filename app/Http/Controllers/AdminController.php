@@ -54,6 +54,12 @@ class AdminController extends Controller
         $photos = Image::all();
         return view ('admin.managePhotos', compact('photos'));
     }
-    public function showPhoto($id) {
+    public function deletePhoto($id) {
+        $photo = Image::find($id);
+        if (!$photo) {
+            return response()->json(['message' => 'Photo not found'], 404);
+        }
+        $photo->delete();
+        return response()->json(['message' => 'Photo deleted']);
     }
 }

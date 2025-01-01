@@ -16,26 +16,75 @@
         </thead>
         <tbody>
             @foreach($photos as $index => $photo)
-            <tr>
+            <tr id="row-photo-{{ $photo->id }}">
                 <td>{{ $index + 1 }}</td>
                 <td>
                     <img src="{{ asset('storage/' . $photo->url) }}" alt="{{ $photo->title }}" width="100">
                 </td>
                 <td>{{ $photo->title }}</td>
                 <td>{{ $photo->description }}</td>
-                {{-- <td>
-                    <a href="{{ route('photos.show', $photo->id) }}" class="btn btn-info">Lihat</a>
-                    <a href="{{ route('photos.edit', $photo->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('photos.destroy', $photo->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus foto ini?')" class="btn btn-danger">Hapus</button>
-                    </form>
-                </td> --}}
+                <td>
+                    <center>
+                        <button data-id="{{ $photo->id }}" class="btn btn-danger btn-delete-photo">Hapus</button>
+                    </center>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<!-- Modal Konfirmasi Hapus -->
+<div class="modal fade" id="modalConfirmDelete" tabindex="-1" aria-labelledby="modalConfirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalConfirmDeleteLabel">Konfirmasi Hapus</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus foto ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+
+<script>
+    // Event klik tombol Hapus
+    let photoIdToDelete;
+    $(document).on('click', '.btn-delete-photo', function () {
+        photoIdToDelete = $(this).data('id');
+        $('#modalConfirmDelete').modal('show');
+    });
+
+    // Konfirmasi penghapusan
+    $('#confirmDeleteButton').on('click', function () {
+        if (!photoIdToDelete) return;
+
+        $.ajax({
+            url: "{{ url('admin/photos') }}/" + photoIdToDelete + "/delete",
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                _method: 'DELETE'
+            },
+            success: function (res) {
+                $('#row-photo-' + photoIdToDelete).remove();
+                $('#modalConfirmDelete').modal('hide');
+            },
+            error: function (err) {
+                alert('Gagal menghapus data!');
+            }
+        });
+    });
+</script>
 
 @endsection
