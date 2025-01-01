@@ -14,11 +14,11 @@ Ini adalah proyek Laravel untuk mengelola galeri foto. Proyek ini memungkinkan p
 
 1. Clone repositori ini:
     ```bash
-    git clone https://github.com/username/galeri-foto.git
+    git clone https://github.com/damarsk/website-gallery.git
     ```
 2. Masuk ke direktori proyek:
     ```bash
-    cd galeri-foto
+    cd website-gallery
     ```
 3. Install dependensi menggunakan Composer:
     ```bash
