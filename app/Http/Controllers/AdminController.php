@@ -7,30 +7,38 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
-        return view ('admin.dashboard');
+    public function index()
+    {
+        $totalUsers = User::count();
+        $totalPhotos = Image::count();
+
+        return view('admin.dashboard', compact('totalUsers', 'totalPhotos'));
     }
 
     // USER
-    public function listUsers() {
+    public function listUsers()
+    {
         $users = User::all();
-        return view ('admin.manageUsers', compact('users'));
+        return view('admin.manageUsers', compact('users'));
     }
-    public function showUser($id) {
+    public function showUser($id)
+    {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
         return response()->json($user);
     }
-    public function editUser($id) {
+    public function editUser($id)
+    {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
         return response()->json($user);
     }
-    public function updateUser(Request $request, $id) {
+    public function updateUser(Request $request, $id)
+    {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
@@ -40,7 +48,8 @@ class AdminController extends Controller
         $user->save();
         return response()->json($user);
     }
-    public function deleteUser($id) {
+    public function deleteUser($id)
+    {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
@@ -48,11 +57,12 @@ class AdminController extends Controller
         $user->delete();
         return response()->json(['message' => 'User deleted']);
     }
-    
+
     // PHOTO
-    public function listPhotos() {
+    public function listPhotos()
+    {
         $photos = Image::all();
-        return view ('admin.managePhotos', compact('photos'));
+        return view('admin.managePhotos', compact('photos'));
     }
     public function deletePhoto($id) {
         $photo = Image::find($id);

@@ -2,7 +2,7 @@
 @section('title', 'Manage Users')
 @section('content')
 
-<div class="container mt-5">
+<div class="container mt-2">
     <h2>Daftar Pengguna</h2>
     <table class="table table-bordered">
         <thead>

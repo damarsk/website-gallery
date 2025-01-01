@@ -13,6 +13,6 @@ class Image extends Model
         'title',
         'description',
         'photo_date',
-        'url', // Path gambar
+        'url', 
     ];
 }
