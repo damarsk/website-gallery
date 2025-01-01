@@ -47,7 +47,6 @@ Route::middleware(['checklogin'])->group(function () {
         Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
         Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
         // Manage Photo
-        Route::get('/photos/{id}', [AdminController::class, 'showPhoto'])->name('admin.photos.show');
-        Route::patch('/photos/{id}/edit', [AdminController::class, 'editPhoto'])->name('admin.photos.edit');
+        Route::delete('/photos/{id}/delete', [AdminController::class, 'deletePhoto'])->name('admin.photos.delete');
     });
 });
