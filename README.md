@@ -8,6 +8,7 @@ Ini adalah proyek Laravel untuk mengelola galeri foto. Proyek ini memungkinkan p
 - Lihat daftar foto
 - Hapus foto
 - Autentikasi pengguna
+- Panel Admin
 
 ## Instalasi
 
