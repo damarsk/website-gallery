@@ -33,6 +33,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['checklogin'])->group(function () {
     Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
     Route::get('/tambah', [AlbumController::class, 'tambahAlbum'])->name('tambah.album');
+    Route::get('/about', [AlbumController::class, 'about'])->name('album.about');
     Route::post('/album', [AlbumController::class, 'store'])->name('album');
     Route::post('/signout', [AuthController::class, 'signout'])->name('signout');
     

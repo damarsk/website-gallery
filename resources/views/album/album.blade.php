@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Glorious24 | Album Kenangan')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/album.css') }}">
